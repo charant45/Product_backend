@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "express": "^4.19.2",
+    "figlet": "^1.7.0",
+    "node": "^22.3.0"
+  }
+}
