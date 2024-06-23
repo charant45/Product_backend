@@ -6,22 +6,26 @@ const url = require("url");
 const dataText = fs.readFileSync(`${__dirname}/data.json`);
 const data = JSON.parse(dataText);
 
-console.log(__dirname);
-
 const app = http.createServer(async (req, res) => {
     res.writeHead(200, {
         "Content-Type": "text/html",
+        
     });
+
     const { query, pathname } = url.parse(req.url, true);
 
     switch (pathname) {
         case "/": {
-            const bf = await fsPromises.readFile(`${__dirname}/pages/homepage.html`);
+            const bf = await fsPromises.readFile(
+                `${__dirname}/pages/homepage.html`
+            );
             res.end(bf);
             break;
         }
         case "/products": {
-            const bf = await fsPromises.readFile(`${__dirname}/pages/productsPage.html`);
+            const bf = await fsPromises.readFile(
+                `${__dirname}/pages/productsPage.html`
+            );
             let text = bf.toString();
             let productsText = "";
             for (let i = 0; i < data.length; i++) {
@@ -37,20 +41,26 @@ const app = http.createServer(async (req, res) => {
             break;
         }
         case "/view": {
-            const product = data.find((elem)=>{
+            const product = data.find((elem) => {
                 if (elem.id == query.id) return true;
                 else return false;
             });
-            
-            res.end(`<div>
-                        <h2>${product.title}</h2>
-                        <img src="${product.thumbnail}" alt='product-image' height='200'>
-                        <h4>${product.price}</h4>
-                        <p>${product.description}</p>
-                </div>`);
+            const bf = await fsPromises.readFile(
+                `${__dirname}/pages/view.html`
+            );
+            let text = bf.toString();
+            text = text.replace(
+                "$VIEW$",
+                `<div class="product-card">
+                    <h2>${product.title}</h2>
+                    <img src="${product.thumbnail}" height='300'>
+                    <h4>${product.price}</h4>
+                    <p>${product.description}</p>
+                </div>`
+            );
+            res.end(text);
             break;
         }
-        
         default: {
             res.end("<h2>Oops! Page not found...</h2>");
         }

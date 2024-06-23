@@ -1,6 +1,7 @@
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
         * {
             padding: 0;
@@ -10,31 +11,78 @@
 
         nav {
             height: 10vh;
-            background-color: azure;
+            background-color: rgba(83, 82, 82, 0.8); /* Add transparency to nav background */
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 0 48px;
         }
 
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+        }
+
+        nav li {
+            margin-right: 24px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #f7f4f4;
+            transition: color 0.3s ease;
+            padding: 30px;
+            transition: background-color 0.3s ease;
+            font-weight: bolder;
+            font-size: larger;
+        }
+
+        nav a:hover {
+            color: #666;
+        }
         main {
             padding: 48px;
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
             height: 70vh;
-            background-color: blanchedalmond;
+            background-color: rgba(255, 235, 205, 0.8);
+            justify-content: space-around;
+            align-items: center;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        main img {
+            max-width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 5px;
         }
 
         footer {
             height: 20vh;
-            background-color: rgb(209, 206, 206);
+            background-color: rgba(209, 206, 206, 0.8); /* Add transparency to footer background */
         }
     </style>
 </head>
 
 <body>
-    <nav></nav>
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="/products">Products</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul> 
+    </nav>
     <main>
-        <a href="/products">View Products</a>
+        <!-- <img src="../assests/banneroffer.png" alt="img"> -->
     </main>
     <footer></footer>
 </body>
-
 </html>
